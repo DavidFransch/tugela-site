@@ -104,8 +104,7 @@ export default function Services() {
         <div className="container">
           <div className={styles.tag}>Our process</div>
           <h2 className={styles.sectionHeading}>Discover → Prototype → Build → Measure</h2>
-          <p className={styles.processBody}>Every engagement starts with a discovery phase where we map your operations and propose a solution. Before any full build begins, you see a working prototype. Development happens in phases with regular demos. And once launched, we help you track whether it\'s actually working.</p>
-          <p className={styles.processBody}>This approach exists because most software project failures aren\'t technical — they\'re alignment failures that compound over months of silent development. We fix that by making alignment a continuous activity, not a one-time brief.</p>
+          <p className={styles.processBody}>Most project failures aren't technical — they're alignment failures. We don't let that happen.</p>
         </div>
       </section>
 
