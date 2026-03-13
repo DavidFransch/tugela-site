@@ -72,11 +72,12 @@ export default function Home() {
       <section className={styles.sectionAlt}>
         <div className="container">
           <div className={styles.sectionTag}>The solution</div>
-          <h2 className={styles.sectionHeading}>AI systems built around your specific business, not a generic template</h2>
+          <h2 className={styles.sectionHeading}>Intelligent systems built around how your organisation actually works</h2>
           <div className={styles.solutionGrid}>
             <div>
-              <p className={styles.sectionBody}>We design and build custom AI automation for the workflows that matter most in your business — from internal operations to customer-facing processes. The result is a system your team actually uses, because it was built around how they already work.</p>
-              <p className={styles.sectionBody}>Our clients reclaim significant time from repetitive processes, reduce complexity across their operations, and create capacity to grow without proportionally growing headcount.</p>
+              <p className={styles.sectionBody}>
+                We design and build custom automation for the workflows that matter most — from internal operations to customer-facing processes. The result is a system your team actually uses, built around how they already work, freeing them to focus on the decisions that drive growth.
+              </p>
             </div>
             <div className={styles.solutionCard}>
               <div className={styles.solutionStat}><span className={styles.statNum}>6+</span><span className={styles.statLabel}>Years FinTech engineering</span></div>
