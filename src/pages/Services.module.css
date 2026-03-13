@@ -1,0 +1,242 @@
+.page { padding-top: 80px; }
+
+.hero {
+  padding: 80px 0 60px;
+  border-bottom: 1px solid var(--border);
+}
+
+.tag {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.heading {
+  font-size: clamp(36px, 6vw, 60px);
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.sub {
+  font-size: 18px;
+  color: var(--text-2);
+  max-width: 520px;
+  line-height: 1.7;
+}
+
+.sectionHeading {
+  font-size: clamp(24px, 3vw, 34px);
+  margin-bottom: 28px;
+  letter-spacing: -0.01em;
+}
+
+/* SERVICES */
+.servicesSection { padding: 60px 0; }
+
+.serviceCard {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 48px;
+  padding: 48px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+
+.serviceCard:first-child { padding-top: 24px; }
+
+.serviceNum {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  margin-bottom: 14px;
+}
+
+.serviceTitle {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
+}
+
+.serviceDesc {
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text-2);
+  max-width: 520px;
+}
+
+.outcomeList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  background: var(--bg-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.outcomeItem {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 14px 18px;
+  font-size: 13px;
+  color: var(--text-2);
+  border-bottom: 1px solid var(--border);
+}
+
+.outcomeItem:last-child { border-bottom: none; }
+
+.outcomeDot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+/* INDUSTRIES */
+.industriesSection {
+  padding: 80px 0;
+  background: var(--bg-1);
+}
+
+.industryGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.industryCard {
+  background: var(--bg-2);
+  padding: 24px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: background var(--transition);
+}
+
+.industryCard:hover { background: var(--bg-3); }
+
+.industryLabel {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.industryDesc {
+  font-size: 13px;
+  color: var(--text-3);
+}
+
+/* PROCESS */
+.processSection { padding: 80px 0; }
+
+.processBody {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--text-2);
+  max-width: 680px;
+  margin-bottom: 14px;
+}
+
+/* FAQ */
+.faqSection {
+  padding: 80px 0;
+  background: var(--bg-1);
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+.faqItem {
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-2);
+}
+
+.faqItem:last-child { border-bottom: none; }
+
+.faqQ {
+  display: block;
+  padding: 20px 24px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text);
+  cursor: pointer;
+  list-style: none;
+  transition: background var(--transition);
+  user-select: none;
+}
+
+.faqQ:hover { background: var(--bg-3); }
+.faqQ::-webkit-details-marker { display: none; }
+
+.faqItem[open] .faqQ {
+  color: var(--accent);
+}
+
+.faqA {
+  padding: 0 24px 20px;
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--text-2);
+  max-width: 680px;
+}
+
+/* CTA */
+.ctaSection {
+  padding: 80px 0;
+  text-align: center;
+}
+
+.ctaHeading {
+  font-size: clamp(26px, 4vw, 36px);
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
+}
+
+.ctaSub {
+  font-size: 16px;
+  color: var(--text-2);
+  margin-bottom: 32px;
+}
+
+.btnPrimary {
+  background: var(--accent);
+  color: #0a0a0a;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 13px 28px;
+  border-radius: var(--radius-sm);
+  border: none;
+  transition: opacity var(--transition), transform var(--transition);
+}
+
+.btnPrimary:hover { opacity: 0.88; transform: translateY(-1px); }
+
+@media (max-width: 900px) {
+  .serviceCard { grid-template-columns: 1fr; gap: 24px; }
+  .industryGrid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .industryGrid { grid-template-columns: 1fr; }
+}

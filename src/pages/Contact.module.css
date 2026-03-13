@@ -1,0 +1,264 @@
+.page { padding-top: 80px; }
+
+.hero {
+  padding: 80px 0 60px;
+  border-bottom: 1px solid var(--border);
+}
+
+.tag {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+.heading {
+  font-size: clamp(36px, 6vw, 60px);
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+
+.sub {
+  font-size: 18px;
+  color: var(--text-2);
+  max-width: 540px;
+  line-height: 1.7;
+}
+
+/* FORM SECTION */
+.formSection { padding: 60px 0 80px; }
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 48px;
+  align-items: start;
+}
+
+.formBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fieldRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-2);
+}
+
+.input {
+  background: var(--bg-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  font-size: 15px;
+  font-family: var(--font-body);
+  color: var(--text);
+  transition: border-color var(--transition);
+  outline: none;
+  width: 100%;
+}
+
+.input::placeholder { color: var(--text-3); }
+.input:focus { border-color: var(--border-md); }
+
+.textarea {
+  background: var(--bg-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  font-size: 15px;
+  font-family: var(--font-body);
+  color: var(--text);
+  transition: border-color var(--transition);
+  outline: none;
+  width: 100%;
+  resize: vertical;
+  min-height: 120px;
+  line-height: 1.6;
+}
+
+.textarea::placeholder { color: var(--text-3); }
+.textarea:focus { border-color: var(--border-md); }
+
+/* CHIPS */
+.chipGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  background: var(--bg-1);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 7px 14px;
+  font-size: 13px;
+  color: var(--text-2);
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: border-color var(--transition), color var(--transition), background var(--transition);
+}
+
+.chip:hover {
+  border-color: var(--border-md);
+  color: var(--text);
+}
+
+.chipActive {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-dim2);
+}
+
+/* SUBMIT */
+.btnPrimary {
+  background: var(--accent);
+  color: #0a0a0a;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 13px 28px;
+  border-radius: var(--radius-sm);
+  border: none;
+  align-self: flex-start;
+  transition: opacity var(--transition), transform var(--transition);
+}
+
+.btnPrimary:hover:not(:disabled) { opacity: 0.88; transform: translateY(-1px); }
+.btnPrimary:disabled { opacity: 0.4; cursor: not-allowed; }
+
+.formNote {
+  font-size: 13px;
+  color: var(--text-3);
+}
+
+/* SIDEBAR */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: sticky;
+  top: 100px;
+}
+
+.sideCard {
+  background: var(--bg-1);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+}
+
+.sideHeading {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+
+.stepList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.stepItem {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.55;
+}
+
+.stepDot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent-dim);
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.directLink {
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: none;
+  margin-bottom: 6px;
+  transition: opacity var(--transition);
+}
+
+.directLink:hover { opacity: 0.8; }
+
+.sideNote {
+  font-size: 13px;
+  color: var(--text-3);
+}
+
+/* SUCCESS */
+.successBlock {
+  max-width: 500px;
+  margin: 160px auto;
+  text-align: center;
+}
+
+.successIcon {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--accent-dim);
+  color: var(--accent);
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px;
+}
+
+.successHeading {
+  font-size: 36px;
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.successBody {
+  font-size: 16px;
+  color: var(--text-2);
+  line-height: 1.7;
+  margin-bottom: 12px;
+}
+
+.link {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+@media (max-width: 900px) {
+  .formGrid { grid-template-columns: 1fr; }
+  .sidebar { position: static; }
+  .fieldRow { grid-template-columns: 1fr; }
+}
