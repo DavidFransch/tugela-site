@@ -5,10 +5,10 @@ const clients = ['University of the Western Cape', 'Griffith University', 'Argon
 
 
 const steps = [
-  { n: '01', title: 'Discovery', body: 'We map your business processes, identify the highest-leverage automation opportunities, and define what success looks like.' },
-  { n: '02', title: 'Prototype', body: 'We build a working proof of concept — fast. You interact with it, give feedback, and we refine before committing to the full build.' },
-  { n: '03', title: 'Build & iterate', body: 'We develop the full solution in phases, with regular demos and feedback sessions. You\'re never waiting months to see progress.' },
-  { n: '04', title: 'Measure', body: 'We help you track the value the system delivers — so you know the investment is working, and where to go next.' },
+  { n: '01', title: 'Discover together', body: 'We sit down with you and get curious about your business — how it runs, where it gets stuck, and where the real opportunities are. This part is energising. Most people haven\'t had someone look this closely at their operations before.' },
+  { n: '02', title: 'See it before you commit', body: 'Before we build anything substantial, we put a working prototype in your hands. You can interact with it, react to it, and shape it. No surprises down the line.' },
+  { n: '03', title: 'Build it together', body: 'Development happens in the open — regular demos, honest conversations, and room to evolve the solution as we learn more. You\'re never waiting months to see progress.' },
+  { n: '04', title: 'Watch it work', body: 'We help you measure the impact once it\'s live. Then we figure out what to build next. The best client relationships are the ones that keep going.' },
 ]
 
 const differentiators = [
@@ -72,7 +72,6 @@ export default function Home() {
       <section className={styles.sectionAlt}>
         <div className="container">
           <div className={styles.sectionTag}>The solution</div>
-          <h2 className={styles.sectionHeading}>Intelligent systems built around how your organisation actually works</h2>
           <div className={styles.solutionGrid}>
             <div>
               <p className={styles.sectionBody}>
@@ -80,9 +79,9 @@ export default function Home() {
               </p>
             </div>
             <div className={styles.solutionCard}>
-              <div className={styles.solutionStat}><span className={styles.statNum}>6+</span><span className={styles.statLabel}>Years FinTech engineering</span></div>
-              <div className={styles.solutionStat}><span className={styles.statNum}>4</span><span className={styles.statLabel}>Service lines</span></div>
-              <div className={styles.solutionStat}><span className={styles.statNum}>2</span><span className={styles.statLabel}>Active university partnerships</span></div>
+              <p className={styles.solutionQuote}>
+                "Built on engineering principles, not best guesses.""
+              </p>
             </div>
           </div>
         </div>
@@ -92,8 +91,8 @@ export default function Home() {
       <section className={styles.section}>
         <div className="container">
           <div className={styles.sectionTag}>How it works</div>
-          <h2 className={styles.sectionHeading}>You see something working before we build the full thing</h2>
-          <p className={styles.sectionBody}>Most software projects fail because requirements drift and nobody catches it until the end. We fix that by showing you a working prototype early — so alignment happens when it's cheap to adjust.</p>
+          <h2 className={styles.sectionHeading}>We get into your business together — and build something real.</h2>
+          <p className={styles.sectionBody}>This isn't a hand-off process. We dig into how your organisation works, find the opportunities worth building, and create something together — with you shaping it at every step.</p>
           <div className={styles.stepsGrid}>
             {steps.map(s => (
               <div key={s.n} className={styles.stepCard}>

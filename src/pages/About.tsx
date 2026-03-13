@@ -10,8 +10,8 @@ const experience = [
 const partners = [
   { name: 'University of the Western Cape', type: 'Academic partner', location: 'Cape Town, SA' },
   { name: 'Griffith University', type: 'Academic partner', location: 'Brisbane, AU' },
-  { name: 'Argonaught Science', type: 'Client', location: 'South Africa' },
-  { name: 'Labyrinth Studios', type: 'Client', location: 'South Africa' },
+  { name: 'Argonaught Science', type: 'NGO', location: 'South Africa' },
+  { name: 'Labyrinth Studios', type: 'Film Studio', location: 'South Africa' },
 ]
 
 const values = [
