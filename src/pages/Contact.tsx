@@ -1,15 +1,20 @@
 import { useState } from 'react'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { z } from 'zod'
 import styles from './Contact.module.css'
 
-type FormState = {
-  name: string
-  email: string
-  company: string
-  companySize: string
-  budget: string
-  interest: string[]
-  message: string
-}
+const contactSchema = z.object({
+  name: z.string().min(1, 'Name is required'),
+  email: z.string().email('Invalid email address'),
+  company: z.string().min(1, 'Company is required'),
+  companySize: z.string().optional(),
+  budget: z.string().optional(),
+  interest: z.array(z.string()).min(0),
+  message: z.string().optional(),
+})
+
+type ContactFormData = z.infer<typeof contactSchema>
 
 const companySizes = ['Less than 20', '20–50', '50–100', '100–500', '500+']
 const budgets = ['Less than R50K', 'R50K–R200K', 'R200K–R500K', 'R500K+', 'Not sure yet']
@@ -23,28 +28,59 @@ const interests = [
 ]
 
 export default function Contact() {
-  const [form, setForm] = useState<FormState>({
-    name: '', email: '', company: '', companySize: '', budget: '', interest: [], message: '',
-  })
   const [submitted, setSubmitted] = useState(false)
-  const [loading, setLoading] = useState(false)
+  const [serverError, setServerError] = useState<string | null>(null)
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors, isSubmitting },
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema),
+    defaultValues: {
+      interest: [],
+    },
+  })
+
+  const selectedInterests = watch('interest') || []
+  const selectedCompanySize = watch('companySize')
+  const selectedBudget = watch('budget')
 
   const toggleInterest = (item: string) => {
-    setForm(f => ({
-      ...f,
-      interest: f.interest.includes(item)
-        ? f.interest.filter(i => i !== item)
-        : [...f.interest, item],
-    }))
+    const nextInterests = selectedInterests.includes(item)
+      ? selectedInterests.filter(i => i !== item)
+      : [...selectedInterests, item]
+    setValue('interest', nextInterests)
   }
 
-  const handleSubmit = async () => {
-    if (!form.name || !form.email || !form.company) return
-    setLoading(true)
-    // Replace this with your form submission endpoint (e.g. Formspree, Resend, etc.)
-    await new Promise(r => setTimeout(r, 1000))
-    setLoading(false)
-    setSubmitted(true)
+  const onSubmit = async (data: ContactFormData) => {
+    setServerError(null)
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      })
+
+      let result
+      const contentType = response.headers.get('content-type')
+      if (contentType && contentType.includes('application/json')) {
+        result = await response.json()
+      } else {
+        const text = await response.text()
+        result = { error: text || 'Server returned an error without JSON' }
+      }
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Something went wrong')
+      }
+
+      setSubmitted(true)
+    } catch (err: any) {
+      setServerError(err.message)
+    }
   }
 
   if (submitted) {
@@ -77,39 +113,39 @@ export default function Contact() {
           <div className={styles.formGrid}>
 
             {/* FORM */}
-            <div className={styles.formBlock}>
+            <form className={styles.formBlock} onSubmit={handleSubmit(onSubmit)}>
 
               <div className={styles.fieldGroup}>
                 <label className={styles.label}>Your name *</label>
                 <input
-                  className={styles.input}
+                  className={`${styles.input} ${errors.name ? styles.inputError : ''}`}
                   type="text"
                   placeholder="Jane Smith"
-                  value={form.name}
-                  onChange={e => setForm(f => ({ ...f, name: e.target.value }))}
+                  {...register('name')}
                 />
+                {errors.name && <span className={styles.errorText}>{errors.name.message}</span>}
               </div>
 
               <div className={styles.fieldGroup}>
                 <label className={styles.label}>Work email *</label>
                 <input
-                  className={styles.input}
+                  className={`${styles.input} ${errors.email ? styles.inputError : ''}`}
                   type="email"
                   placeholder="jane@yourcompany.com"
-                  value={form.email}
-                  onChange={e => setForm(f => ({ ...f, email: e.target.value }))}
+                  {...register('email')}
                 />
+                {errors.email && <span className={styles.errorText}>{errors.email.message}</span>}
               </div>
 
               <div className={styles.fieldGroup}>
                 <label className={styles.label}>Company / organisation *</label>
                 <input
-                  className={styles.input}
+                  className={`${styles.input} ${errors.company ? styles.inputError : ''}`}
                   type="text"
                   placeholder="Acme Corp"
-                  value={form.company}
-                  onChange={e => setForm(f => ({ ...f, company: e.target.value }))}
+                  {...register('company')}
                 />
+                {errors.company && <span className={styles.errorText}>{errors.company.message}</span>}
               </div>
 
               <div className={styles.fieldRow}>
@@ -119,9 +155,9 @@ export default function Contact() {
                     {companySizes.map(s => (
                       <button
                         key={s}
-                        className={`${styles.chip} ${form.companySize === s ? styles.chipActive : ''}`}
-                        onClick={() => setForm(f => ({ ...f, companySize: s }))}
                         type="button"
+                        className={`${styles.chip} ${selectedCompanySize === s ? styles.chipActive : ''}`}
+                        onClick={() => setValue('companySize', s)}
                       >{s}</button>
                     ))}
                   </div>
@@ -134,9 +170,9 @@ export default function Contact() {
                   {budgets.map(b => (
                     <button
                       key={b}
-                      className={`${styles.chip} ${form.budget === b ? styles.chipActive : ''}`}
-                      onClick={() => setForm(f => ({ ...f, budget: b }))}
                       type="button"
+                      className={`${styles.chip} ${selectedBudget === b ? styles.chipActive : ''}`}
+                      onClick={() => setValue('budget', b)}
                     >{b}</button>
                   ))}
                 </div>
@@ -148,9 +184,9 @@ export default function Contact() {
                   {interests.map(i => (
                     <button
                       key={i}
-                      className={`${styles.chip} ${form.interest.includes(i) ? styles.chipActive : ''}`}
-                      onClick={() => toggleInterest(i)}
                       type="button"
+                      className={`${styles.chip} ${selectedInterests.includes(i) ? styles.chipActive : ''}`}
+                      onClick={() => toggleInterest(i)}
                     >{i}</button>
                   ))}
                 </div>
@@ -161,21 +197,22 @@ export default function Contact() {
                 <textarea
                   className={styles.textarea}
                   placeholder="Tell us about your business, the problem you're trying to solve, or any context that would be helpful..."
-                  value={form.message}
-                  onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
+                  {...register('message')}
                   rows={5}
                 />
               </div>
 
+              {serverError && <div className={styles.serverError}>{serverError}</div>}
+
               <button
+                type="submit"
                 className={styles.btnPrimary}
-                onClick={handleSubmit}
-                disabled={loading || !form.name || !form.email || !form.company}
+                disabled={isSubmitting}
               >
-                {loading ? 'Sending...' : 'Send message'}
+                {isSubmitting ? 'Sending...' : 'Send message'}
               </button>
               <p className={styles.formNote}>No sales pitch. We'll review what you've shared and come back with a plan for a conversation.</p>
-            </div>
+            </form>
 
             {/* SIDEBAR */}
             <div className={styles.sidebar}>
