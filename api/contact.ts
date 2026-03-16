@@ -28,8 +28,8 @@ export default async function handler(
     const { name, email, company, companySize, budget, interest, message } = validatedData;
 
     const { data, error } = await resend.emails.send({
-      from: 'Tugela AI <onboarding@resend.dev>', // Replace with your verified domain in production
-      to: ['hello@tugela.ai'],
+      from: process.env.CONTACT_FORM_FROM || 'onboarding@resend.dev',
+      to: [process.env.CONTACT_FORM_TO || 'hello@tugela.ai'],
       subject: `New Contact Form Submission from ${name}`,
       replyTo: email,
       html: `
