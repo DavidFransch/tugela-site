@@ -40,15 +40,10 @@ export default function About() {
       <section className={styles.founderSection}>
         <div className="container">
           <div className={styles.founderGrid}>
-            <div className={styles.founderAvatar}>
-              <div className={styles.avatarPlaceholder}>
-                <span className={styles.avatarInitial}>T</span>
-                <p className={styles.avatarHint}>Add your photo here</p>
-              </div>
-            </div>
+
             <div className={styles.founderBio}>
               <div className={styles.tag}>Founder</div>
-              <h2 className={styles.founderName}>Your Name</h2>
+              <h2 className={styles.founderName}>David Fransch</h2>
               <p className={styles.founderRole}>Founder · Tugela</p>
               <p className={styles.founderText}>
                 Tugela exists because most organisations are sitting on untapped potential — processes that could run themselves, data that could drive better decisions, and teams spending time on work that software should be doing.
